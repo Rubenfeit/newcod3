@@ -1,0 +1,11 @@
+[33mcommit 93a5276e2303947db06777469853c0c3e9683c21[m
+Author: RF <RF>
+Date:   Fri Feb 3 12:20:42 2017 +0100
+
+    able to create post with static category
+
+[33mcommit 94f61f558d49cb72372151aec1d74c9b885f5a82[m
+Author: RF <RF>
+Date:   Thu Feb 2 10:05:48 2017 +0100
+
+    new version login working

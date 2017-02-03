@@ -11,6 +11,8 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
+use Psy\Exception\ErrorException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -125,6 +127,7 @@ class AdminUsersController extends Controller
 
             $input = $request->except('password');
 
+
         }else{
 
             $input = $request->all();
@@ -146,7 +149,7 @@ class AdminUsersController extends Controller
 
         }
 
-        $input['password'] = bcrypt($request->password);
+
 
         $user->update($input);
 
@@ -161,6 +164,25 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        return view('admin.users.destroy');
+       $user = User::findOrFail($id);
+
+
+       //$file = $user->photo->file;
+
+        /*
+            try {
+                unlink(public_path() . $user->photo->file); //Apaga a foto de public images
+            }catch (ErrorException $e){
+
+            }
+    */
+       // $user->photo->file->delete();
+
+       $user->delete();
+
+        Session::flash('deleted_user','The user has been deleted');
+
+        return redirect('/admin/users');
+
     }
 }

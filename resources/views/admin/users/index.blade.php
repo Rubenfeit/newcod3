@@ -2,6 +2,9 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if(Session::has('deleted_user'))
+        <p class="bg-danger">{{session('deleted_user')}}</p>
+    @endif
 
     <h1>Users</h1>
 
@@ -19,6 +22,7 @@
           </tr>
         </thead>
         <tbody>
+
             @if($users)
                 @foreach($users as $user)
 
